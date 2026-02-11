@@ -1009,3 +1009,39 @@ jupyter notebook
 | Day 6-7 | 回顾：你已经知道了——场景长什么样、数据是什么格式、训练怎么跑起来、成功率怎么看。**可以进入第 2 周精读代码了** | 整理笔记 |
 
 这样第 1 周结束后，你就有了完整的 **感性认识**：知道这个系统输入什么、输出什么、跑起来是什么样子。第 2 周再去读代码就不会"悬在空中"了。
+
+
+## 补充内容：✅ 配置 VSCode 远程连接 AutoDL + 运行 Notebook
+
+### 已经完成的事情
+
+1. **确定了最佳开发方式：VSCode 远程连接**
+   - 对比了 SSH 终端、JupyterLab、VSCode 三种方式
+   - VSCode = 终端 + Jupyter + 代码编辑器，三合一，最适合后续读代码、改代码、跑实验
+
+2. **配置了 VSCode Remote-SSH 连接 AutoDL**
+   - 安装了两个 VSCode 插件：`Remote - SSH` 和 `Jupyter`
+   - 配置了 SSH config 文件：
+     ```
+     Host autodl
+         HostName connect.cqa1.seetacloud.com
+         User root
+         Port 20530
+     ```
+   - 成功连接到 AutoDL 服务器，打开了 LIBERO 项目文件夹
+
+3. **配置了 Notebook 运行环境**
+   - 修复了 `conda activate` 报错（运行了 `conda init bash` + `source ~/.bashrc`）
+   - 在 `libero_env` 环境中安装了 `ipykernel`
+   - 用 `python -m ipykernel install` 注册了 `libero_env` 内核
+   - 在 VSCode 中成功选择 `libero_env (Python 3.9.25)` 作为 Notebook 内核
+
+4. **安装了 LIBERO 包并验证**
+   - 在 `libero_env` 中运行了 `pip install -e .` 安装 LIBERO
+   - 验证 `import libero` 成功
+
+### 当前状态
+- ✅ VSCode 远程连接 AutoDL 已配通
+- ✅ Notebook 可以正常运行，内核指向 `libero_env`
+- ✅ `import libero` 成功
+- 🔜 下一步：开始跑 `quick_walkthrough.ipynb`
